@@ -1,0 +1,16 @@
+{
+    "esnext": true,
+    "devel": true,
+    "browser": true,
+    "camelcase": true,
+    "curly": true,
+    "eqeqeq": true,
+    "latedef": true,
+    "noarg": true,
+    "noempty": true,
+    "nonew": true,
+    "quotmark": 'single',
+    "undef": true,
+    "unused": true,
+    "predef": []
+}
