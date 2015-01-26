@@ -1,1 +1,3 @@
-document.write('Hello, world.');
+import App from './app/app';
+
+var app = window.app = new App();
