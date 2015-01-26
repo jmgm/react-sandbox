@@ -1,0 +1,11 @@
+<section class="foo -bar">
+    <header>hi {{name}}</header>
+
+    {{#if items}}
+        <ul>
+            {{#each items}}
+                <li>{{.}}</li>
+            {{/each}}
+        </ul>
+    {{/if}}
+</section>

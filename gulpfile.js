@@ -16,6 +16,7 @@ var gulp = require('gulp'),
     streamify = require('gulp-streamify'),
     uglify = require('gulp-uglify'),
     jshint = require('gulp-jshint');
+    ractive = require('gulp-ractive');
 
 gulp.task('index', function() {
     return gulp.src('src/index.html')
@@ -52,40 +53,17 @@ gulp.task('less', function() {
 gulp.task('csslint', ['less'], function() {
     return gulp.src('build/index.css')
         .pipe(plumber())
-        .pipe(csslint({
-            'adjoining-classes': false,
-            'box-model': false,
-            'box-sizing': false,
-            'bulletproof-font-face': false,
-            'compatible-vendor-prefixes': false,
-            'empty-rules': false,
-            'display-property-grouping': true,
-            'duplicate-background-images': true,
-            'duplicate-properties': true,
-            'fallback-colors': false,
-            'floats': false,
-            'font-faces': false,
-            'font-sizes': true,
-            'gradients': false,
-            'ids': true,
-            'import': true,
-            'important': true,
-            'known-properties': true,
-            'outline-none': true,
-            'overqualified-elements': true,
-            'qualified-headings': false,
-            'regex-selectors': true,
-            'shorthand': true,
-            'star-property-hack': true,
-            'text-indent': false,
-            'underscore-property-hack': true,
-            'unique-headings': false,
-            'universal-selector': false,
-            'unqualified-attributes': true,
-            'vendor-prefix': true,
-            'zero-units': true
-        }))
+        .pipe(csslint('.csslintrc'))
         .pipe(csslint.reporter());
+});
+
+gulp.task('templates', function() {
+    return gulp.src('src/templates/**/*.html')
+        .pipe(plumber())
+        .pipe(cache('templates'))
+        .pipe(ractive())
+        .pipe(rename({ extname: '.json' }))
+        .pipe(gulp.dest('.tmp/templates/'));
 });
 
 gulp.task('es6', function() {
@@ -96,12 +74,17 @@ gulp.task('es6', function() {
         .pipe(gulp.dest('.tmp/js/'));
 });
 
-gulp.task('webpack', ['es6'], function() {
+gulp.task('webpack', ['templates', 'es6'], function() {
     return gulp.src('.tmp/js/index.js')
         .pipe(plumber())
         .pipe(webpack({
             resolve: {
                 root: [path.join(__dirname, 'bower_components')]
+            },
+            module: {
+                loaders: [
+                    { test: /\.json$/, loader: 'json' }
+                ],
             },
             plugins: [
                 new wp.ResolverPlugin([
@@ -131,20 +114,22 @@ gulp.task('js', ['webpack'], function() {
 });
 
 gulp.task('jshint', function() {
-    return gulp.src('src/js/app/**/*.js')
+    return gulp.src('src/js/**/*.js')
         .pipe(plumber())
         .pipe(cache('jshint'))
         .pipe(jshint())
-        .pipe(jshint.reporter('stylish'));
+        .pipe(jshint.reporter('default'));
 });
 
-gulp.task('build', ['index', 'assets', 'less', 'js']);
+gulp.task('build', ['index', 'assets', 'less', 'js', 'templates']);
 gulp.task('lint', ['csslint', 'jshint']);
 
 gulp.task('watch', function() {
     gulp.watch('src/index.html', ['index']);
+    gulp.watch('src/assets/**/*', ['assets']);
     gulp.watch('src/less/**/*.less', ['less', 'csslint']);
-    gulp.watch('src/js/**/*.js', ['js', 'jshint']);
+    gulp.watch(['src/templates/**/*.html', 'src/js/**/*.js'], ['js']);
+    gulp.watch(['src/js/**/*.js'], ['jshint']);
 });
 
 gulp.task('default', ['build', 'lint', 'watch']);

@@ -1,6 +1,7 @@
+import home from '../../templates/home';
+
 class App {
     constructor() {
-        console.log('hi');
     }
 }
 
