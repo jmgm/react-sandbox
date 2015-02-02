@@ -16,7 +16,6 @@ var gulp = require('gulp'),
     streamify = require('gulp-streamify'),
     uglify = require('gulp-uglify'),
     jshint = require('gulp-jshint');
-    ractive = require('gulp-ractive');
 
 gulp.task('index', function() {
     return gulp.src('src/index.html')
@@ -57,24 +56,16 @@ gulp.task('csslint', ['less'], function() {
         .pipe(csslint.reporter());
 });
 
-gulp.task('templates', function() {
-    return gulp.src('src/templates/**/*.html')
-        .pipe(plumber())
-        .pipe(cache('templates'))
-        .pipe(ractive())
-        .pipe(rename({ extname: '.json' }))
-        .pipe(gulp.dest('.tmp/templates/'));
-});
-
 gulp.task('es6', function() {
-    return gulp.src('src/js/**/*.js')
+    return gulp.src(['src/js/**/*.js', 'src/js/**/*.jsx'])
         .pipe(plumber())
         .pipe(cache('es6'))
         .pipe(es6to5())
+        .pipe(rename({ extname: '.js' }))
         .pipe(gulp.dest('.tmp/js/'));
 });
 
-gulp.task('webpack', ['templates', 'es6'], function() {
+gulp.task('webpack', ['es6'], function() {
     return gulp.src('.tmp/js/index.js')
         .pipe(plumber())
         .pipe(webpack({
@@ -121,15 +112,14 @@ gulp.task('jshint', function() {
         .pipe(jshint.reporter('default'));
 });
 
-gulp.task('build', ['index', 'assets', 'less', 'js', 'templates']);
+gulp.task('build', ['index', 'assets', 'less', 'js']);
 gulp.task('lint', ['csslint', 'jshint']);
 
 gulp.task('watch', function() {
     gulp.watch('src/index.html', ['index']);
     gulp.watch('src/assets/**/*', ['assets']);
     gulp.watch('src/less/**/*.less', ['less', 'csslint']);
-    gulp.watch(['src/templates/**/*.html', 'src/js/**/*.js'], ['js']);
-    gulp.watch(['src/js/**/*.js'], ['jshint']);
+    gulp.watch(['src/js/**/*.js', 'src/js/**/*.jsx'], ['js', 'jshint']);
 });
 
 gulp.task('default', ['build', 'lint', 'watch']);
