@@ -1,4 +1,7 @@
 {
   "name": "sandbox",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "ractive": "~0.6.1"
+  }
 }
