@@ -7,7 +7,7 @@ var NewForm = React.createClass({
                 <input
                 	className="TextInput"
                 	type="text"
-                	placeholder="new"
+                	placeholder="New&hellip;"
                 	ref="content"
                 />
             </form>

@@ -8,7 +8,7 @@ var Todo = React.createClass({
             		{this.props.content}
             	</span>
 
-            	<div>
+            	<div className="TodoList--tagContainer">
             		{
             			/*(this.props.tags || []).map(t =>
             				<span key={t} className="TodoList--tag">{t}</span>
@@ -17,7 +17,7 @@ var Todo = React.createClass({
             	</div>
 
             	<button className="TodoList--delete" onClick={this.onDelete}>
-            		X
+            		x
             	</button>
             </li>
         );

@@ -4,12 +4,9 @@ import TodoList from './components/todo-list';
 import NewForm from './components/new-form';
 
 var data = [
-        { id: 0, content: 'foo', tags: ['abc', 'def'] },
-        { id: 1, content: 'bar', tags: [] },
-        { id: 2, content: 'zet', tags: ['om'] },
-        { id: 3, content: 'gee', tags: ['xyz', '1245'] },
+        { id: 0, content: 'task', tags: ['tag'] }
     ],
-    lastId = 3;
+    lastId = 0;
 
 var App = React.createClass({
     getInitialState() {
