@@ -73,6 +73,7 @@ gulp.task('webpack', ['es6'], function() {
                 root: [path.join(__dirname, 'bower_components')]
             },
             module: {
+                noParse: /react/,
                 loaders: [
                     { test: /\.json$/, loader: 'json' }
                 ],

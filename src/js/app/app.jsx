@@ -1,15 +1,18 @@
 import React from 'react';
-import Todos from './components/todos';
+import SearchForm from './components/search-form';
+import TodoList from './components/todo-list';
+import NewForm from './components/new-form';
 
-class App {
-    constructor() {}
-
-    start() {
-        React.render(
-            <Todos />,
-            document.getElementById('app')
-        );
+var App = React.createClass({
+    render() {
+    	return (
+    		<div>
+    			<SearchForm />
+    			<TodoList />
+    			<NewForm />
+    		</div>
+    	);
     }
-}
+});
 
 export default App;

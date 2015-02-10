@@ -1,6 +1,6 @@
 import React from 'react';
 
-var TodoItem = React.createClass({
+var Todo = React.createClass({
     render() {
         return (
             <li>{this.props.title}</li>
@@ -8,4 +8,4 @@ var TodoItem = React.createClass({
     }
 });
 
-export default TodoItem;
+export default Todo;

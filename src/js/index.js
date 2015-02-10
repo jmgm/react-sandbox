@@ -1,5 +1,7 @@
+import React from 'react';
 import App from './app/app';
 
-var app = window.app = new App();
-
-app.start();
+React.render(
+	React.createElement(App),
+	document.getElementById('app')
+);

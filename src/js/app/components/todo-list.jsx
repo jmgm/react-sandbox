@@ -1,14 +1,18 @@
 import React from 'react';
-import TodoItem from './todo-item';
+import Todo from './todo';
 
-var TodoList = React.createClass({
+var data = ['abc', 'def', 'ghi'];
+
+var Todos = React.createClass({
     render() {
         return (
             <ul>
-                <TodoItem title="xyz" />
+                {
+                    data.map(todo => <Todo title={todo} />)
+                }
             </ul>
         );
     }
 });
 
-export default TodoList;
+export default Todos;
