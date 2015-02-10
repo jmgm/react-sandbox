@@ -3,9 +3,11 @@ import React from 'react';
 var SearchForm = React.createClass({
     render() {
         return (
-            <div>
-                <input type="text" placeholder="search..." />
-            </div>
+            <input
+                className="TextInput"
+                type="text"
+                placeholder="search"
+            />
         );
     }
 });

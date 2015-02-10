@@ -1,18 +1,24 @@
 import React from 'react';
 import Todo from './todo';
 
-var data = ['abc', 'def', 'ghi'];
-
-var Todos = React.createClass({
+var TodoList = React.createClass({
     render() {
         return (
-            <ul>
+            <ul className="TodoList">
                 {
-                    data.map(todo => <Todo title={todo} />)
+                    this.props.todos.map(t =>
+                        <Todo
+                            key={t.id}
+                            tkey={t.id}
+                            content={t.content}
+                            tags={t.tags}
+                            onDelete={this.props.onTodoDelete}
+                        />
+                    )
                 }
             </ul>
         );
     }
 });
 
-export default Todos;
+export default TodoList;

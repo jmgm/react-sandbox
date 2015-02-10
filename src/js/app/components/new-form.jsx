@@ -3,10 +3,27 @@ import React from 'react';
 var NewForm = React.createClass({
     render() {
         return (
-            <div>
-                <input type="text" placeholder="new..." />
-            </div>
+            <form className="NewForm" onSubmit={this.onSubmit}>
+                <input
+                	className="TextInput"
+                	type="text"
+                	placeholder="new"
+                	ref="content"
+                />
+            </form>
         );
+    },
+
+    onSubmit(e) {
+    	e.preventDefault();
+
+    	let contentNode = this.refs.content.getDOMNode(),
+    		content = contentNode.value;
+
+    	if(content) {
+	    	this.props.onSubmit({ content });
+	    	contentNode.value = '';
+    	}
     }
 });
 
