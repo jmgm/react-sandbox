@@ -19,6 +19,11 @@
 - subtasks
 - ordering (drag & drop)
 
+## technical
+
+- choosing minified or full version of js bundle based on some setting
+- include subset of fonts and put them in css as base64
+
 ## visual
 
 - sticky top bar
