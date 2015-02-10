@@ -21,7 +21,7 @@ var App = React.createClass({
             <div className="Content">
                 <NewForm onSubmit={this.onNewSubmit} />
                 
-                <SearchForm />
+                /*<SearchForm />*/
                 
                 <TodoList
                     todos={this.state.data}
