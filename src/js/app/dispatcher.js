@@ -13,7 +13,7 @@ class Dispatcher {
         return this;
     }
 
-    emit(action, data) {
+    dispatch(action, data) {
         let handlers = this._listeners[action];
 
         if(handlers) {
