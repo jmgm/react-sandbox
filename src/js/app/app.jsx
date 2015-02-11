@@ -1,7 +1,8 @@
 import React from 'react';
+import dispatcher from './dispatcher';
+import NewForm from './components/new-form';
 import SearchForm from './components/search-form';
 import TodoList from './components/todo-list';
-import NewForm from './components/new-form';
 
 var data = [
         { id: 0, content: 'task', tags: ['tag'] }
