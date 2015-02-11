@@ -1,16 +1,17 @@
 import React from 'react';
+import dispatcher from '../dispatcher';
 
 var Todo = React.createClass({
     render() {
         return (
             <li className="TodoList--item">
             	<span className="TodoList--itemContent">
-            		{this.props.content}
+            		{this.props.data.content}
             	</span>
 
             	<div className="TodoList--tagContainer">
             		{
-            			/*(this.props.tags || []).map(t =>
+            			/*(this.props.data.tags || []).map(t =>
             				<span key={t} className="TodoList--tag">{t}</span>
             			)*/
             		}
@@ -24,8 +25,7 @@ var Todo = React.createClass({
     },
 
     onDelete() {
-    	console.log(this.props.tkey);
-    	this.props.onDelete(this.props.tkey);
+    	dispatcher.dispatch('deleteTodo', this.props.data.id);
     }
 });
 

@@ -6,14 +6,8 @@ var TodoList = React.createClass({
         return (
             <ul className="TodoList">
                 {
-                    this.props.todos.map(t =>
-                        <Todo
-                            key={t.id}
-                            tkey={t.id}
-                            content={t.content}
-                            tags={t.tags}
-                            onDelete={this.props.onTodoDelete}
-                        />
+                    this.props.data.map(t =>
+                        <Todo key={t.id} data={t} />
                     )
                 }
             </ul>

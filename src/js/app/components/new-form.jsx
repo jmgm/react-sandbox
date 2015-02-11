@@ -1,4 +1,5 @@
 import React from 'react';
+import dispatcher from '../dispatcher';
 
 var NewForm = React.createClass({
     render() {
@@ -21,7 +22,7 @@ var NewForm = React.createClass({
     		content = contentNode.value;
 
     	if(content) {
-	    	this.props.onSubmit({ content });
+	    	dispatcher.dispatch('createTodo', { content });
 	    	contentNode.value = '';
     	}
     }
