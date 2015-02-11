@@ -10,6 +10,7 @@ class TodoStore extends Emitter {
 
 		dispatcher.register(this, {
 			'createTodo': 'onCreateTodo',
+			'setTodoState': 'onSetTodoState',
 			'deleteTodo': 'onDeleteTodo'
 		});
 	}
@@ -22,10 +23,20 @@ class TodoStore extends Emitter {
 		this._data.push({
 			id: this._getNewId(),
 			content: props.content,
-			tags: []
+			tags: [],
+			done: false
 		});
 
 		this.emit('changed');
+	}
+
+	onSetTodoState(data) {
+		let i = this._data.findIndex(el => el.id === data.id);
+
+		if(i !== -1) {
+			this._data[i].done = data.state;
+			this.emit('changed');
+		}
 	}
 
 	onDeleteTodo(id) {

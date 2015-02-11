@@ -5,6 +5,14 @@ var Todo = React.createClass({
     render() {
         return (
             <li className="TodoList--item">
+                <input
+                    className="TodoList--checkbox"
+                    type="checkbox"
+                    checked={this.props.data.done}
+                    onChange={this.onToggleDone}
+                    ref="checkbox"
+                />
+
             	<span className="TodoList--itemContent">
             		{this.props.data.content}
             	</span>
@@ -24,8 +32,15 @@ var Todo = React.createClass({
         );
     },
 
+    onToggleDone() {
+        dispatcher.dispatch('setTodoState', {
+            state: this.refs.checkbox.getDOMNode().checked,
+            id: this.props.data.id
+        });
+    },
+
     onDelete() {
-    	dispatcher.dispatch('deleteTodo', this.props.data.id);
+        dispatcher.dispatch('deleteTodo', this.props.data.id);
     }
 });
 
