@@ -3,15 +3,20 @@ import dispatcher from '../dispatcher';
 
 var Todo = React.createClass({
     render() {
+        var className = 'TodoList--item' +
+            (this.props.data.done ? ' -done' : '');
+
         return (
-            <li className="TodoList--item">
-                <input
-                    className="TodoList--checkbox"
-                    type="checkbox"
-                    checked={this.props.data.done}
-                    onChange={this.onToggleDone}
-                    ref="checkbox"
-                />
+            <li className={className}>
+                <label className="TodoList--checkboxLabel">
+                    <input
+                        className="TodoList--checkbox"
+                        type="checkbox"
+                        checked={this.props.data.done}
+                        onChange={this.onToggleDone}
+                        ref="checkbox"
+                    />
+                </label>
 
             	<span className="TodoList--itemContent">
             		{this.props.data.content}

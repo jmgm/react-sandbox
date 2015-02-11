@@ -25,9 +25,9 @@
 
 	cursor: pointer;
 
-	:hover > & { color: @river; }
+	.TodoList--item:hover & { color: @river; }
 
-	.TodoList--checkbox:checked + & {
+	.TodoList--item.-done & {
 		color: @textFaded;
 		text-decoration: line-through;
 	}
@@ -55,8 +55,33 @@
 	cursor: pointer;
 }
 
+.TodoList--checkboxLabel {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 4rem;
+	height: 4rem;
+
+	cursor: pointer;
+
+	&::before {
+		position: absolute;
+		display: block;
+		top: 1.5rem;
+		right: 1.5rem;
+		bottom: 1.5rem;
+		left: 1.5rem;
+
+		border: 1px solid @emerald;
+		border-radius: 100%;
+
+		content: '';
+
+		.TodoList--item.-done & { background-color: @emerald; }
+	}
+}
+
 .TodoList--checkbox {
 	position: absolute;
-	top: 1rem;
-	left: 1rem;
+	visibility: hidden;
 }
