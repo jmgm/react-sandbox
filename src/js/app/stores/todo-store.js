@@ -5,8 +5,14 @@ class TodoStore extends Emitter {
 	constructor() {
 		super();
 
-		this._data = [];
-		this._lastId = -1;
+		this._data = [
+			{ id: 0, content: 'Foo', tags: [], done: false },
+			{ id: 1, content: 'Bartjuuyuk', tags: [], done: false },
+			{ id: 2, content: 'rjyukuilu', tags: [], done: false },
+			{ id: 3, content: 'Blah Blah Blag', tags: [], done: false },
+			{ id: 4, content: 'Osom task', tags: [], done: false }
+		];
+		this._lastId = 4; // originally -1
 
 		dispatcher.register(this, {
 			'createTodo': 'onCreateTodo',
