@@ -5,9 +5,11 @@
 	padding: 0 1rem;
 	box-sizing: border-box;
 
-	border: 1px solid hsv(0, 0, 0.8);
+	border: 1px solid hsv(0, 0, 0.9);
 
 	color: inherit;
 	font-family: inherit;
 	.textS;
+
+	&:focus { border-color: fade(@river, 50%); }
 }

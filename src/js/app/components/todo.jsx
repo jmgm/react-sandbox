@@ -16,6 +16,8 @@ var Todo = React.createClass({
                         onChange={this.onToggleDone}
                         ref="checkbox"
                     />
+
+                    <span className="TodoList--checkIcon Icon -check"></span>
                 </label>
 
             	<span className="TodoList--itemContent">
@@ -31,7 +33,7 @@ var Todo = React.createClass({
             	</div>
 
             	<button className="TodoList--delete" onClick={this.onDelete}>
-            		x
+            		<span className="Icon -close"></span>
             	</button>
             </li>
         );

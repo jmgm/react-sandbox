@@ -1,0 +1,25 @@
+@font-face {
+	font-family: 'sandbox-icons';
+	src: data-uri('../assets/fonts/icons.woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.Icon {
+	font-family: 'sandbox-icons';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	
+	&.-search::before { content: '\e600'; }
+	&.-add::before { content: '\e601'; }
+	&.-check::before { content: '\e602'; }
+	&.-close::before { content: '\e603'; }
+}
+
