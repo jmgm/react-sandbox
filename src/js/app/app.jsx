@@ -16,9 +16,10 @@ var App = React.createClass({
     render() {
         return (
             <div className="Content">
-                <NewForm />
-                
-                /*<SearchForm />*/
+                <header className="Content--top">
+                    <NewForm />
+                    /*<SearchForm />*/
+                </header>
                 
                 <TodoList data={this.state.data} />
             </div>
