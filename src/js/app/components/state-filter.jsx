@@ -6,19 +6,27 @@ var StateFilter = React.createClass({
         return (
             <div className="StateFilter">
             	{
-            		['all', 'active', 'done'].map(state =>
-            			<label key={state}>
-		            		<input
-		            			type="radio"
-		            			name="stateFilterRadio"
-		            			value={state}
-		            			checked={this.props.filter === state}
-		            			onChange={this.onRadioChange}
-		            		/>
+            		['all', 'active', 'done'].map(state => {
+                        let lclass = 'StateFilter--label' +
+                            (this.props.filter === state ? ' __active' : '');
 
-		            		{this._capitalize(state)}
-		            	</label>
-            		)
+               			return (
+                            <label className={lclass} key={state}>
+    		            		<input
+                                    className="StateFilter--radio"
+    		            			type="radio"
+    		            			name="stateFilterRadio"
+    		            			value={state}
+    		            			checked={this.props.filter === state}
+    		            			onChange={this.onRadioChange}
+    		            		/>
+
+    		            		<span className="StateFilter--labelText">
+                                    {this._capitalize(state)}
+                                </span>
+    		            	</label>
+                        );
+                    })
             	}
             </div>
         );

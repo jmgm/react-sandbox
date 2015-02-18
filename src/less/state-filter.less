@@ -1,0 +1,57 @@
+.StateFilter {
+	.clearfix;
+}
+
+.StateFilter--label {
+	position: relative;
+	float: left;
+	height: 4rem;
+	margin-right: 1rem;
+	padding: 0 1rem 0 4rem;
+
+	line-height: 4rem;
+
+	cursor: pointer;
+
+	&::before {
+		display: block;
+		position: absolute;
+		top: 1rem;
+		left: 1rem;
+		width: 2rem;
+		height: 2rem;
+
+		box-shadow: 0 0 0 1px hsv(0, 0, 0.9);
+		border-radius: 100%;
+
+		content: '';
+	}
+
+	&::after {
+		display: block;
+		position: absolute;
+		top: 1.75rem;
+		left: 1.75rem;
+		width: 0.5rem;
+		height: 0.5rem;
+
+		background-color: @emerald;
+		border-radius: 100%;
+		opacity: 0;
+
+		content: '';
+	}
+
+	&:hover { color: @river; }
+
+	&.__active::after { opacity: 1; }
+}
+
+.StateFilter--radio {
+	position: absolute;
+	visibility: hidden;
+}
+
+.StateFilter--labelText {
+	//
+}

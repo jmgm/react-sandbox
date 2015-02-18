@@ -11,14 +11,6 @@ let filters = {
 	}
 };
 
-let filters = {
-	state: (el, state) => ({
-		all: el => true,
-		active: el => !el.done,
-		done: el => el.done
-	})[state](el);
-};
-
 class TodoStore extends Emitter {
 	constructor() {
 		super();
