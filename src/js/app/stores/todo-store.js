@@ -1,6 +1,24 @@
 import Emitter from '../../lib/emitter';
 import dispatcher from '../dispatcher';
 
+let filters = {
+	state: (el, state) => {
+		switch(state) {
+			case 'all': return true;
+			case 'active': return !el.done;
+			case 'done': return el.done;
+		}
+	}
+};
+
+let filters = {
+	state: (el, state) => ({
+		all: el => true,
+		active: el => !el.done,
+		done: el => el.done
+	})[state](el);
+};
+
 class TodoStore extends Emitter {
 	constructor() {
 		super();
@@ -21,8 +39,16 @@ class TodoStore extends Emitter {
 		});
 	}
 
-	getData() {
-		return this._data;
+	getData(opts = {}) {
+		return this._data.filter(el => {
+			let pass = true;
+
+			for(let prop in opts) {
+				pass = pass && filters[prop](el, opts[prop]);
+			}
+
+			return pass;
+		});
 	}
 
 	onCreateTodo(props) {
