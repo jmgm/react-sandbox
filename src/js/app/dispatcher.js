@@ -18,7 +18,7 @@ class Dispatcher {
 
         if(handlers) {
             let l = handlers.length;
-            
+
             for(let i = 0; i < l; ++i) {
                 handlers[i](data);
             }
@@ -30,7 +30,7 @@ class Dispatcher {
     _setHandler(action, handler) {
         let handlers = this._listeners[action] ||
             (this._listeners[action] = []);
-        
+
         handlers.push(handler);
     }
 }

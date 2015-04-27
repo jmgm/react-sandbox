@@ -14,7 +14,7 @@ var App = React.createClass({
 
     getInitialState() {
         let filters = filterStore.getData();
-        
+
         return {
             todos: todoStore.getData(filters),
             filters: filters
@@ -27,7 +27,7 @@ var App = React.createClass({
                 <header className="Content--top">
                     <NewForm />
                 </header>
-                
+
                 <TodoList data={this.state.todos} />
 
                 <footer className="Content--bottom">
