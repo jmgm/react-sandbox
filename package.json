@@ -11,7 +11,7 @@
     "gulp-concat": "^2.4.3",
     "gulp-csslint": "^0.1.5",
     "gulp-jshint": "^1.9.0",
-    "gulp-less": "^2.0.1",
+    "gulp-less": "^3.0.3",
     "gulp-minify-css": "^0.4.0",
     "gulp-plumber": "^0.6.6",
     "gulp-ractive": "0.0.2",
